@@ -39,8 +39,15 @@ jobs:
           hexo clean
           hexo g
           echo "build blog successful"
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
       - name: Deploy Blog # 设置 git 信息并推送静态博客文件
         run: |
+          git credential-cache exit
           git config --global user.name "Chocolateater"
           git config --global user.email "boxxyt@163.com"
           hexo deploy
