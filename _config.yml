@@ -112,4 +112,4 @@ theme: Anzhiyu
 deploy:
   type: git
   repository: https://github.com/chocolateater/Chocolateater.github.io.git
-  branch: main
+  branch: gh-pages
