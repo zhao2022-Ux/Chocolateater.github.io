@@ -111,5 +111,5 @@ theme: Anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: https://github.com/chocolateater/Chocolateater.github.io.git
+  repository: git@github.com:chocolateater/chocolateater.github.io.git
   branch: gh-pages
