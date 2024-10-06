@@ -39,32 +39,26 @@ jobs:
       - name: Generate
         run: hexo clean && hexo generate
 
-      - name: Deploy
-        run: |
-          git config --global user.name "renyancheng"
-          git config --global user.email "2441260435@qq.com"
-          hexo deploy
+      - name: Build
+        run: npm run build
 
-      #- name: Build
-      #  run: npm run build
+      - name: List Build Output
+        run: ls -l ./public
 
-      #- name: List Build Output
-      #  run: ls -l ./public
-
-      #- name: Upload Pages artifact
-      #  uses: actions/upload-pages-artifact@v3
-      #  with:
-      #    path: ./public
-#  deploy:
-#    needs: build
-#    permissions:
-#      pages: write
-#      id-token: write
-#    environment:
-#      name: github-pages
-#      url: ${{ steps.deployment.outputs.page_url }}
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Deploy to GitHub Pages
-#        id: deployment
-#        uses: actions/deploy-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
