@@ -34,6 +34,11 @@ jobs:
         run: |
           npm install -g hexo-cli --save
           echo "install hexo successful"
+
+      - name: Install Anzhiyu Theme # 安装 Anzhiyu 主题
+        run: |
+          npm uninstall hexo-theme-anzhiyu
+          npm install hexo-theme-anzhiyu
       - name: Build Blog # 编译创建静态博客文件
         run: |
           hexo clean
@@ -51,5 +56,4 @@ jobs:
           git config --global user.name "Chocolateater"
           git config --global user.email "boxxyt@163.com"
           hexo deploy
-
       - run: echo "Deploy Successful!"
